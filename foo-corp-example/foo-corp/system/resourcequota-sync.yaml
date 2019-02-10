@@ -1,0 +1,11 @@
+kind: Sync
+apiVersion: nomos.dev/v1alpha1
+metadata:
+  name: resourcequotas
+spec:
+  groups:
+  - kinds:
+    - kind: ResourceQuota
+      hierarchyMode: hierarchicalQuota
+      versions:
+      - version: v1

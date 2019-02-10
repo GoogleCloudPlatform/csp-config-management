@@ -1,0 +1,6 @@
+kind: Repo
+apiVersion: nomos.dev/v1alpha1
+metadata:
+  name: repo
+spec:
+  version: "0.1.0"

@@ -1,0 +1,11 @@
+kind: Sync
+apiVersion: nomos.dev/v1alpha1
+metadata:
+  name: podsecuritypolicies
+spec:
+  groups:
+  - group: extensions
+    kinds:
+    - kind: PodSecurityPolicy
+      versions:
+      - version: v1beta1
