@@ -1,4 +1,0 @@
-This example repository for the fictional 'foo-corp' highlights various features of *CSP Config Management*.
-
-This repo is discussed in detail in the [CSP Config Management Quickstart](https://cloud.google.com/csp-config-management/docs/quickstart). For detailss on how to install CSP Config Management and direct your Kubernetes cluster to read from this repository, please reference the instructions in the quickstart guide.
-

@@ -1,4 +1,4 @@
-#foo-corp Example
+# foo-corp Example #
 
 This example repository for the fictional 'foo-corp' highlights various features of **Cloud Services Platform (CSP) Config Management**.
 
