@@ -22,4 +22,4 @@ spec:
 
 For a more complete experience, you can fork this repository, which will allow you to make changes and experiment by adding configurations of your own to the examples contained here. When forking the repository, you will need to change your cluster configuration to point to the URL of your forked repository.
 
-For more information on CSP Config Management, please reference the [Google Cloud Platform docuementation](https://cloud.google.com/csp-config-management/docs/). 
+For more information on CSP Config Management, please reference the [Google Cloud Platform documentation](https://cloud.google.com/csp-config-management/docs/). 
