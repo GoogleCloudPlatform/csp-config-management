@@ -8,10 +8,9 @@ This example command will configure your cluster to use the "foo-corp" example c
 
 ```
 apiVersion: addons.sigs.k8s.io/v1alpha1
-kind: Nomos
+kind: ConfigManagement
 metadata:
-  name: nomos
-  namespace: nomos-system
+  name: config-management
 spec:
   git:
     syncRepo: git@github.com:GoogleCloudPlatform/csp-examples.git
