@@ -13,7 +13,7 @@ metadata:
   name: config-management
 spec:
   git:
-    syncRepo: git@github.com:GoogleCloudPlatform/csp-examples.git
+    syncRepo: git@github.com:GoogleCloudPlatform/csp-config-management.git
     syncWait: 5
     secretType: ssh
     policyDir: foo-corp
