@@ -1,8 +1,8 @@
-# CSP Config Management Examples #
+# Anthos Config Management Examples #
 
-This repository contains example configurations for [Cloud Services Platform (CSP) Config Management][1].
+This repository contains example configurations for [Anthos Config Management][1].
 
-To use these examples, install the CSP Config Management operator on your Kubernetes cluster and and create a custom resource that points at one of the included examples by setting the `policyDir` field to the directory of the desired example (e.g. `foo-corp`).
+To use these examples, install the Anthos Config Management operator on your Kubernetes cluster and and create a custom resource that points at one of the included examples by setting the `policyDir` field to the directory of the desired example (e.g. `foo-corp`).
 
 This example command will configure your cluster to use the `foo-corp` example contained in this repository:
 
@@ -22,7 +22,7 @@ spec:
 
 For a more complete experience, you can fork this repository, which will allow you to make changes and experiment by adding configurations of your own to the examples contained here. When forking the repository, you will need to change your cluster configuration to point to the URL of your forked repository.
 
-For more information on CSP Config Management, please reference the [Google Cloud Platform documentation][2].
+For more information on Anthos Config Management, please reference the [Google Cloud Platform documentation][2].
 
-[1]: https://cloud.google.com/csp-config-management/
-[2]: https://cloud.google.com/csp-config-management/docs
+[1]: https://cloud.google.com/anthos-config-management/
+[2]: https://cloud.google.com/anthos-config-management/docs
