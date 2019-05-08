@@ -6,3 +6,4 @@ metadata:
     env: prod
   annotations:
     audit: "true"
+    configmanagement.gke.io/cluster-selector: prod
