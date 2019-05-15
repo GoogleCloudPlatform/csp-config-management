@@ -5,7 +5,7 @@ metadata:
 subjects:
 - kind: Group
   name: system:serviceaccounts:audit
-  apiGroup: rbac.authorization.k8s.io
+  apiGroup: rbac.authorization.k8s.io.THIS_IS_AN_ERROR
 roleRef:
   kind: ClusterRole
   name: view
