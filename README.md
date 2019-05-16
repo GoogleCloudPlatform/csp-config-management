@@ -20,7 +20,7 @@ metadata:
 spec:
   git:
     syncRepo: git@github.com:GoogleCloudPlatform/csp-config-management.git
-    syncBranch: "1.0.0"
+    syncBranch: "0.1.0"
     syncWait: 5
     secretType: ssh
     policyDir: foo-corp
