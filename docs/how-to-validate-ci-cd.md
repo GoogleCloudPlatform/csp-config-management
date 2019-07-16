@@ -19,23 +19,23 @@ using GKE clusters. The same setup works in any container-based CI/CD system
     ```yaml
     steps:
     - name: 'gcr.io/cloud-builders/kubectl'
-    args: ['config', 'current-context']
-    volumes:
-    - name: 'kube'
-    path: '/kube'
-    env:
-    - 'KUBECONFIG=/kube/config'
-    - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
-    - 'CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS=true'
+      args: ['config', 'current-context']
+      volumes:
+      - name: 'kube'
+      path: '/kube'
+      env:
+      - 'KUBECONFIG=/kube/config'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
+      - 'CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS=true'
     - name: 'gcr.io/nomos-release/nomos:stable'
-    args: ['nomos', 'vet', '--path', '/workspace']
-    volumes:
-    - name: 'kube'
-    path: '/kube'
-    env:
-    - 'KUBECONFIG=/kube/config'
-    timeout: 30s
+      args: ['nomos', 'vet', '--path', '/workspace']
+      volumes:
+      - name: 'kube'
+      path: '/kube'
+      env:
+      - 'KUBECONFIG=/kube/config'
+      timeout: 30s
     ```
 
     There are two steps in this configuration:
