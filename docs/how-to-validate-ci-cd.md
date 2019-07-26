@@ -22,7 +22,7 @@ using GKE clusters. The same setup works in any container-based CI/CD system
       args: ['config', 'current-context']
       volumes:
       - name: 'kube'
-      path: '/kube'
+        path: '/kube'
       env:
       - 'KUBECONFIG=/kube/config'
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
@@ -32,7 +32,7 @@ using GKE clusters. The same setup works in any container-based CI/CD system
       args: ['nomos', 'vet', '--path', '/workspace']
       volumes:
       - name: 'kube'
-      path: '/kube'
+        path: '/kube'
       env:
       - 'KUBECONFIG=/kube/config'
       timeout: 30s
