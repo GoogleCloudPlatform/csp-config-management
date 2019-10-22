@@ -2,8 +2,6 @@ steps:
 - name: 'bash'
   args: ['pwd']
 - name: 'bash'
-  args: ['echo', '$HOME']
-- name: 'bash'
   args: ['cd', '~']
 - name: 'bash'
   args: ['pwd']
