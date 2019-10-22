@@ -11,7 +11,7 @@ steps:
   - 'CLOUDSDK_CONTAINER_CLUSTER=demo-cluster-1'
   - 'CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS=true'
 - name: 'bash'
-  args: ['chmod', '777', '/kube/config']
+  args: ['chmod', '444', '/kube/config']
   volumes:
   - name: 'kube'
     path: '/kube'
