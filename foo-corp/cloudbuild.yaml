@@ -3,19 +3,19 @@ steps:
   args: ['config', 'current-context']
   volumes:
   - name: 'kube'
-    path: '/.kube'
+    path: '~/.kube'
   env:
-  - 'KUBECONFIG=/.kube/config'
+  - 'KUBECONFIG=~/.kube/config'
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=demo-cluster-1'
   - 'CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS=true'
 - name: 'bash'
-  args: ['ls', '-al', '/.kube']
+  args: ['ls', '-al', '~/.kube']
 - name: 'gcr.io/config-management-release/nomos:stable'
   args: ['nomos', 'vet', '--path', '/workspace']
   volumes:
   - name: 'kube'
-    path: '/.kube'
+    path: '~/.kube'
   env:
-  - 'KUBECONFIG=/.kube/config'
+  - 'KUBECONFIG=~/.kube/config'
   timeout: 30s
