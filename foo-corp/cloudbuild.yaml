@@ -12,8 +12,8 @@ steps:
 - name: 'gcr.io/config-management-release/nomos:stable'
   args: ['nomos', 'vet', '--path', '/workspace']
   volumes:
-  - name: 'kube'
-    path: '/kube'
+    - name: 'kube'
+      path: '/kube'
   env:
     - 'KUBECONFIG=/kube/config'
   timeout: 30s
