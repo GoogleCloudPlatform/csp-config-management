@@ -5,6 +5,8 @@ steps:
   volumes:
   - name: 'kube'
     path: '/kube'
+  - name: 'system'
+    path: '/system'
   env:
   - 'KUBECONFIG=/kube/config'
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
