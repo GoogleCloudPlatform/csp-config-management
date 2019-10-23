@@ -23,5 +23,5 @@ steps:
   env:
   - 'KUBECONFIG=/kube/config'
   timeout: 30s
-- name: 'gcr.io/konduct/gatekeeper-validate:demo'
+- name: 'gcr.io/konduct-demo/gatekeeper-validate:latest'
   args: []
