@@ -20,6 +20,8 @@ steps:
   volumes:
   - name: 'kube'
     path: '/kube'
+  - name: 'system'
+    path: '/system'
   env:
   - 'KUBECONFIG=/kube/config'
   timeout: 30s
