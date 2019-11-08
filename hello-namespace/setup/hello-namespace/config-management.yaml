@@ -1,0 +1,12 @@
+apiVersion: configmanagement.gke.io/v1
+kind: ConfigManagement
+metadata:
+  name: config-management
+  namespace: config-management-system
+spec:
+  clusterName: my-cluster
+  git:
+    syncRepo: git@github.com:<GITHUB-USERNAME>/csp-config-management.git
+    syncBranch: master
+    secretType: ssh
+    policyDir: "hello-namespace/config-root"
