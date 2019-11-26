@@ -1,0 +1,15 @@
+- name: 'gcr.io/config-management-release/nomos:stable'
+  args: ['nomos', 'vet', '--path', '/workspace/foo-corp']
+  volumes:
+  - name: 'kube'
+    path: '/kube'
+  env:
+  - 'KUBECONFIG=/kube/config'
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=csp-config-management-cluster'
+  - 'CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS=true'
+- name: 'gcr.io/kpt-functions/source-yaml-dir:demo'
+  args: ['--input', '/dev/null', '--source_dir', '/workspace/foo-corp', '--output', '/workspace/source.yaml']
+- name: 'gcr.io/kpt-functions/gatekeeper-validate:demo'
+  args: ['--input', '/workspace/source.yaml', '--output', '/workspace/validated.yaml']
+
