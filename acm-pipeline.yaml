@@ -1,3 +1,4 @@
+steps:
 - name: 'gcr.io/config-management-release/nomos:stable'
   args: ['nomos', 'vet', '--path', '/workspace/foo-corp']
   volumes:
@@ -12,4 +13,3 @@
   args: ['--input', '/dev/null', '--source_dir', '/workspace/foo-corp', '--output', '/workspace/source.yaml']
 - name: 'gcr.io/kpt-functions/gatekeeper-validate:demo'
   args: ['--input', '/workspace/source.yaml', '--output', '/workspace/validated.yaml']
-
