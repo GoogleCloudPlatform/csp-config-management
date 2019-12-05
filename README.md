@@ -31,4 +31,4 @@ A simple example to generalize how to define and enforce configuration
 Configure policy to apply only to resources in specific regions
 
 [1]: https://cloud.google.com/anthos-config-management/
-[2]: https://cloud.google.com/anthos-config-management/docs
+[2]: https://cloud.google.com/anthos-config-management/docs/overview
