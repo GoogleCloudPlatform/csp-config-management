@@ -4,5 +4,6 @@ metadata:
   name: shipping-prod
   labels:
     env: prod
+    cost-center: "shipping.foo-corp.com"
   annotations:
     audit: "true"
