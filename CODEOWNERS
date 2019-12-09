@@ -1,0 +1,3 @@
+# Add @OWNER as an owner of any files inside any cluster directory anywhere in the repo
+cluster/ @OWNER
+
