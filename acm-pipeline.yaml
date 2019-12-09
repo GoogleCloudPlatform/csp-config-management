@@ -1,4 +1,5 @@
 steps:
+# Generate the kubeconfig file needed to authenticate to the GKE cluster. The root user generates this file with restricted permissions.
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['config', 'current-context']
   volumes:
@@ -6,16 +7,19 @@ steps:
     path: '/kube'
   env:
   - 'KUBECONFIG=/kube/config'
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=csp-config-management-cluster'
+  - 'CLOUDSDK_COMPUTE_ZONE=ZONE'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=CLUSTER_NAME'
   - 'CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS=true'
+# Grant read permissions to the kubeconfig file
 - name: 'bash'
   args: ['chmod', '644', '/kube/config']
   volumes:
   - name: 'kube'
     path: '/kube'
+# Grant read/write permissions to the workspace
 - name: 'bash'
   args: ['chmod', '777', '/workspace']
+# Run nomos hydrate on the foo-corp directory and output the result into hydrated-configs
 - name: 'gcr.io/config-management-release/nomos:latest'
   args: ['nomos', 'hydrate', '--path', '/workspace/foo-corp', '--output', '/workspace/hydrated-configs']
   volumes:
@@ -23,7 +27,9 @@ steps:
     path: '/kube'
   env:
   - 'KUBECONFIG=/kube/config'
+# Recursively read a directory of kubernetes YAML configs from the workspace and output them as one list into config-source.yaml
 - name: 'gcr.io/kpt-functions/source-yaml-dir:demo'
   args: ['--input', '/dev/null', '--source_dir', '/workspace/hydrated-configs', '--output', '/workspace/config-source.yaml']
+# Validate input configs against any OPA ConstraintTemplates and Constraints it finds in its input and output them into config-validated.yaml
 - name: 'gcr.io/kpt-functions/gatekeeper-validate:demo'
   args: ['--input', '/workspace/config-source.yaml', '--output', '/workspace/config-validated.yaml']
