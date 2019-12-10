@@ -1,0 +1,9 @@
+kind: HierarchyConfig
+apiVersion: configmanagement.gke.io/v1
+metadata:
+  name: resourcequotas
+spec:
+  resources:
+  - group: ""
+    kinds: [ "ResourceQuota" ]
+    hierarchyMode: hierarchicalQuota
