@@ -1,6 +1,6 @@
-# ACM CI Pipeline
+# CI Pipeline
 
-This is an example for how to create a CloudBuild CI pipeline on an ACM repo.
+This is an example for how to trigger a CloudBuild CI pipeline on a config directory.
 We will ensure all namespaces have a cost-center label to adhere to the OPA Gatekeeper constraint.
 
 See [our documentation](https://cloud.google.com/anthos-config-management/docs/how-to/validating-configs) for how to set up this example.
@@ -10,8 +10,8 @@ See [our documentation](https://cloud.google.com/anthos-config-management/docs/h
 This repository contains the following files.
 
 ```console
-acm-ci-pipeline/
-├── acm-pipeline.yaml # CloudBuild configuration file with which to set up a trigger
+ci-pipeline/
+├── ci-pipeline.yaml # CloudBuild configuration file with which to set up a trigger
 ├── config-root
 │   ├── cluster
 │   │   ├── fulfillmentcenter-crd.yaml
@@ -31,8 +31,7 @@ acm-ci-pipeline/
 │   │   │       ├── shipping-dev
 │   │   │       │   ├── job-creator-rolebinding.yaml
 │   │   │       │   ├── job-creator-role.yaml
-│   │   │       │   ├── namespace.yaml
-│   │   │       │   └── quota.yaml
+│   │   │       │   └── namespace.yaml
 │   │   │       ├── shipping-prod
 │   │   │       │   ├── fulfillmentcenter.yaml
 │   │   │       │   └── namespace.yaml
@@ -44,7 +43,6 @@ acm-ci-pipeline/
 │   │   └── viewers-rolebinding.yaml
 │   └── system
 │       ├── README.md
-│       ├── repo.yaml
-│       └── resourcequota-hierarchy.yaml
+│       └── repo.yaml
 └── README.md
 ```

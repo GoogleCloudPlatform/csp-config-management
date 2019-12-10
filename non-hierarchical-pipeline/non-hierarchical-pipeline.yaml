@@ -1,7 +1,0 @@
-steps:
-- name: 'bash'
-  args: ['chmod', '777', '/workspace']
-- name: 'gcr.io/kpt-functions/source-yaml-dir:demo'
-  args: ['--input', '/dev/null', '--source_dir', '/workspace/non-hierarchical-pipeline/config-root', '--output', '/workspace/config-source.yaml']
-- name: 'gcr.io/kpt-functions/gatekeeper-validate:demo'
-  args: ['--input', '/workspace/config-source.yaml', '--output', '/workspace/config-validated.yaml']

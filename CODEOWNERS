@@ -1,4 +1,4 @@
 # Add @OWNER as an owner of OPA Gatekeeper constraints and templates
-acm-ci-pipeline/config-root/cluster/*-constraint.yaml @OWNER
-acm-ci-pipeline/config-root/cluster/*-template.yaml @OWNER
-non-hierarchical-pipeline/config-root/constraints @OWNER
+ci-pipeline/config-root/cluster/*-constraint.yaml @OWNER
+ci-pipeline/config-root/cluster/*-template.yaml @OWNER
+ci-pipeline-unstructured/config-root/constraints @OWNER
