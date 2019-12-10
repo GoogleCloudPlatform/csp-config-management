@@ -19,9 +19,9 @@ steps:
 # Grant read/write permissions to the workspace
 - name: 'bash'
   args: ['chmod', '777', '/workspace']
-# Run nomos hydrate on the foo-corp directory and output the result into hydrated-configs
+# Run nomos hydrate on the config-root directory and output the result into hydrated-configs
 - name: 'gcr.io/config-management-release/nomos:latest'
-  args: ['nomos', 'hydrate', '--path', '/workspace/acm-pipeline/config-root', '--output', '/workspace/hydrated-configs']
+  args: ['nomos', 'hydrate', '--path', '/workspace/acm-ci-pipeline/config-root', '--output', '/workspace/hydrated-configs']
   volumes:
   - name: 'kube'
     path: '/kube'
