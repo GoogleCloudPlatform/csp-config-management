@@ -30,5 +30,13 @@ A simple example to generalize how to define and enforce configuration
 
 Configure policy to apply only to resources in specific regions
 
+### [CI Pipeline](ci-pipeline/)
+
+Create a CloudBuild CI pipeline on a config directory
+
+### [Unstructured CI Pipeline](ci-pipeline-unstructured/)
+
+Create a CloudBuild CI pipeline on an unstructured directory
+
 [1]: https://cloud.google.com/anthos-config-management/
 [2]: https://cloud.google.com/anthos-config-management/docs/overview
