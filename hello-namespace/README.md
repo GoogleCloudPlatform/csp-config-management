@@ -48,12 +48,12 @@ To setup the clusters for this example you will need to:
 
 The cluster's ACM Operator must be configured to point to this directory.
 
-1. Update [setup/config-management.yaml](setup/config-management.yaml) to include your cluster name and git username.
+1. Update [setup/hello-namespace/config-management.yaml](setup/hello-namespace/config-management.yaml) to include your cluster name and git username.
 
 1. Apply the sync config to your cluster
 
     ```console
-    $ kubectl apply -f setup/config-management.yaml
+    $ kubectl apply -f setup/hello-namespace/config-management.yaml
     ```
 
 1. Confirm the sync was successful with `nomos status`

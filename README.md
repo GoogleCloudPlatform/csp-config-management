@@ -34,9 +34,9 @@ Configure policy to apply only to resources in specific regions
 
 Create a CloudBuild CI pipeline on a config directory
 
-### [Non-hierarchical CI Pipeline](ci-pipeline-nonhierarchical/)
+### [Unstructured CI Pipeline](ci-pipeline-unstructured/)
 
-Create a CloudBuild CI pipeline on a non-hierarchical directory
+Create a CloudBuild CI pipeline on an unstructured directory
 
 [1]: https://cloud.google.com/anthos-config-management/
 [2]: https://cloud.google.com/anthos-config-management/docs/overview
