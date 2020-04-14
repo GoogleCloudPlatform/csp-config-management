@@ -1,0 +1,13 @@
+apiVersion: configmanagement.gke.io/v1
+kind: ConfigManagement
+metadata:
+  name: config-management
+spec:
+  # clusterName is required and must be unique among all managed clusters
+  clusterName: my-cluster
+  git:
+    syncRepo: git@github.com:mohsinrz/csp-config-management/
+    syncBranch: 1.0.0
+    secretType: ssh
+    policyDir: "foo-corp"
+
