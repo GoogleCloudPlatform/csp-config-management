@@ -3,7 +3,7 @@
 This is an example for how to create a CloudBuild CI pipeline on an unstructured directory, so called because the config-root of this directory does not follow the ACM repo structure.
 We will change the ConfigMap to adhere to the OPA Gatekeeper constraint.
 
-See [our documentation](https://cloud.google.com/anthos-config-management/docs/how-to/validating-configs) for how to set up this example.
+See [our documentation](https://cloud.google.com/anthos-config-management/docs/how-to/policy-agent-ci-pipeline) for how to set up this example.
 
 ## Config Overview
 
