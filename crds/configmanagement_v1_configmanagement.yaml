@@ -107,6 +107,11 @@ spec:
                 as recognized by the "hierarchycontroller.configmanagement.gke.io"
                 label set to "true".
               properties:
+                enablePodTreeLabels:
+                  description: PodTreeLabels copies the tree labels from namespaces
+                    to pods, allowing any system that uses pod logs (such as Stackdriver
+                    logging) to inspect the hierarchy.
+                  type: boolean
                 enabled:
                   description: 'Enable or disable the Hierarchy Controller.  Default:
                     false.'
@@ -135,6 +140,11 @@ spec:
                   items:
                     type: string
                   type: array
+                logDeniesEnabled:
+                  description: 'LogDeniesEnabled.  If true, Policy Controller will
+                    log all denies and dryrun failures.  No effect unless policyController
+                    is enabled.  Default: false.'
+                  type: boolean
                 referentialRulesEnabled:
                   description: 'ReferentialRulesEnabled.  If true, Policy Controller
                     will allow `data.inventory` references in the contents of ConstraintTemplate
