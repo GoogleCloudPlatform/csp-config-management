@@ -3,7 +3,7 @@
 This repository contains example repos for [Anthos Config Management][1].
 
 To use these examples, install the Anthos Config Management operator on your
-Kubernetes cluster and and create a custom resource that points at one of the
+Kubernetes cluster and create a custom resource that points at one of the
 included examples by setting the `policyDir` field to the directory of the
 desired example (e.g. `foo-corp`).
 
