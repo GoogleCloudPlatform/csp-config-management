@@ -3,7 +3,7 @@
 This repository contains example repos for [Anthos Config Management][1].
 
 To use these examples, install the Anthos Config Management operator on your
-Kubernetes cluster and and create a custom resource that points at one of the
+Kubernetes cluster and create a custom resource that points at one of the
 included examples by setting the `policyDir` field to the directory of the
 desired example (e.g. `foo-corp`).
 
@@ -38,15 +38,15 @@ Create a CloudBuild CI pipeline on a config directory
 
 Create a CloudBuild CI pipeline on an unstructured directory
 
-### [Application Pipeline](ci-app)
+### [Application Pipeline](ci-app/)
 
 Validate your application against company policies
 
 ## CRDs
 
-### ConfigManagement
+### [ConfigManagement](crds/)
 
 The ConfigManagement CRD is used to install Anthos Config Management
 
 [1]: https://cloud.google.com/anthos-config-management/
-[2]: https://cloud.google.com/anthos-config-management/docs/overview
+[2]: https://cloud.google.com/anthos-config-management/docs/overview/
