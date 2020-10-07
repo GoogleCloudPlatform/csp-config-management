@@ -36,6 +36,36 @@ spec:
           type: object
         spec:
           properties:
+            binauthz:
+              description: BinAuthz enables Binary Authorization as recognized by
+                the "binauthz.configmanagement.gke.io" label set to "true".
+              properties:
+                enabled:
+                  description: 'Enable or disable BinAuthz.  Default: false.'
+                  type: boolean
+                policyRef:
+                  description: PolicyRef is a reference to the BinAuthz policy which
+                    will be evaluated. Required if BinAuthz is enabled.
+                  properties:
+                    gkeCluster:
+                      description: BinAuthz policy associated with this GKE-on-GCP
+                        cluster.
+                      properties:
+                        location:
+                          description: Location of this cluster
+                          type: string
+                        name:
+                          description: The name of this cluster according to GKE.
+                            This is not necessarily the same as the hub membership
+                            name.
+                          type: string
+                        project:
+                          description: The name of the GCP project containing this
+                            cluster
+                          type: string
+                      type: object
+                  type: object
+              type: object
             clusterName:
               description: ClusterName, if defined, sets the name for this cluster.  If
                 unset, the cluster is considered to be unnamed, and cannot use ClusterSelectors.
@@ -49,6 +79,15 @@ spec:
                     false.'
                   type: boolean
               type: object
+            enableLegacyFields:
+              description: EnableLegacyFields instructs the operator to use spec.git
+                for generating a RootSync resource in MultiRepo mode. Note that this
+                should only be set to true if spec.enableMultiRepo is set to true.
+              type: boolean
+            enableMultiRepo:
+              description: EnableMultiRepo instructs the operator to enable Multi
+                Repo mode for Config Sync.
+              type: boolean
             git:
               description: Git contains configuration specific to importing policies
                 from a Git repo.
