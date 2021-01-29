@@ -1,4 +1,3 @@
-# ----- configmanagement_v1_configmanagement.yaml -----
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
@@ -11,34 +10,40 @@ spec:
   names:
     kind: ConfigManagement
     plural: configmanagements
+  preserveUnknownFields: true
   scope: Cluster
-  # NOTE TO MAINTAINERS: controller-gen will try to remove these and
-  # replace it with `version: v1`.  Don't let that happen, see
-  # https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definition-versioning
   versions:
   - name: v1
     served: true
     storage: true
   validation:
     openAPIV3Schema:
+      description: ConfigManagement is the Schema for the ConfigManagement API.
+      type: object
+      required:
+      - metadata
+      - spec
       properties:
         apiVersion:
           description: 'APIVersion defines the versioned schema of this representation
             of an object. Servers should convert recognized schemas to the latest
-            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources'
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
           type: string
         kind:
           description: 'Kind is a string value representing the REST resource this
             object represents. Servers may infer this from the endpoint the client
-            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds'
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
           type: string
         metadata:
           type: object
         spec:
+          description: ConfigManagementSpec defines the desired state of ConfigManagement.
+          type: object
           properties:
             binauthz:
               description: BinAuthz enables Binary Authorization as recognized by
                 the "binauthz.configmanagement.gke.io" label set to "true".
+              type: object
               properties:
                 enabled:
                   description: 'Enable or disable BinAuthz.  Default: false.'
@@ -46,10 +51,12 @@ spec:
                 policyRef:
                   description: PolicyRef is a reference to the BinAuthz policy which
                     will be evaluated. Required if BinAuthz is enabled.
+                  type: object
                   properties:
                     gkeCluster:
                       description: BinAuthz policy associated with this GKE-on-GCP
                         cluster.
+                      type: object
                       properties:
                         location:
                           description: Location of this cluster
@@ -63,9 +70,10 @@ spec:
                           description: The name of the GCP project containing this
                             cluster
                           type: string
-                      type: object
-                  type: object
-              type: object
+            channel:
+              description: 'Channel specifies a channel that can be used to resolve
+                a specific addon, eg: stable It will be ignored if Version is specified'
+              type: string
             clusterName:
               description: ClusterName, if defined, sets the name for this cluster.  If
                 unset, the cluster is considered to be unnamed, and cannot use ClusterSelectors.
@@ -73,12 +81,13 @@ spec:
             configConnector:
               description: ConfigConnector deploys the GCP Config Connector components
                 as recognized by the "cnrm.cloud.google.com/system" label set to "true".
+              type: object
               properties:
                 enabled:
                   description: 'Enable or disable the Config Connector.  Default:
                     false.'
                   type: boolean
-              type: object
+            # Note to maintainers. Manually delete whatever replaces this.
             enableLegacyFields:
               description: EnableLegacyFields instructs the operator to use spec.git
                 for generating a RootSync resource in MultiRepo mode. Note that this
@@ -91,7 +100,13 @@ spec:
             git:
               description: Git contains configuration specific to importing policies
                 from a Git repo.
+              type: object
               properties:
+                gcpServiceAccountEmail:
+                  description: 'GCPServiceAccountEmail specifies the GCP service
+                    account used to annotate the Config Sync Kubernetes Service Account.
+                    Note: The field is used when secretType: gcpServiceAccount.'
+                  type: string
                 policyDir:
                   description: 'PolicyDir is the absolute path of the directory that
                     contains the local policy.  Default: the root directory of the
@@ -101,6 +116,7 @@ spec:
                   description: Proxy is a struct that contains options for configuring
                     access to the Git repo via a proxy. Only has an effect when secretType
                     is one of ("cookiefile", "none").  Optional.
+                  type: object
                   properties:
                     httpProxy:
                       description: HTTPProxy defines a HTTP_PROXY env variable used
@@ -112,19 +128,19 @@ spec:
                         to access the Git repo.  If both HTTPProxy and HTTPSProxy
                         are specified, HTTPProxy will be ignored. Optional.
                       type: string
-                  type: object
                 secretType:
-                  description: SecretType is the type of secret configured for access
-                    to the Git repo. Must be one of ssh, cookiefile, gcenode, token,
-                    or none. Required. The validation of this is case-sensitive.
-                  pattern: ^(ssh|cookiefile|gcenode|token|none)$
+                  description: SecretType is the type of secret configured for
+                    access to the Git repo. Must be one of ssh, cookiefile,
+                    gcenode, token, gcpserviceaccount or none. Required.
+                    The validation of this is case-sensitive.
                   type: string
+                  pattern: ^(ssh|cookiefile|gcenode|gcpserviceaccount|token|none)$
                 syncBranch:
                   description: 'SyncBranch is the branch to sync from.  Default: "master".'
                   type: string
                 syncRepo:
-                  pattern: ^(((https?|git|ssh):\/\/)|git@)
                   type: string
+                  pattern: ^(((https?|git|ssh):\/\/)|git@)
                 syncRev:
                   description: 'SyncRev is the git revision (tag or hash) to check
                     out. Default: HEAD.'
@@ -138,13 +154,12 @@ spec:
                     is at a nanosecond granularity, and it''s easy to introduce a
                     bug where it looks like the code is dealing with seconds but its
                     actually nanoseconds (or vice versa).'
-                  format: int64
                   type: integer
-              type: object
             hierarchyController:
               description: Hierarchy Controller enables HierarchyController components
                 as recognized by the "hierarchycontroller.configmanagement.gke.io"
                 label set to "true".
+              type: object
               properties:
                 enablePodTreeLabels:
                   description: PodTreeLabels copies the tree labels from namespaces
@@ -155,17 +170,18 @@ spec:
                   description: 'Enable or disable the Hierarchy Controller.  Default:
                     false.'
                   type: boolean
-              type: object
+            # Note to maintainers. Manually delete whatever replaces this.
             policyController:
               description: Policy Controller enables PolicyController components as
                 recognized by the "gatekeeper.sh/manifest" label set to "true".
+              type: object
               properties:
                 auditIntervalSeconds:
                   description: AuditIntervalSeconds. The number of seconds between
                     audit runs. Defaults to 60 seconds. To disable audit, set this
                     to 0.
-                  format: int64
                   type: integer
+                  format: int64
                 enabled:
                   description: 'Enable or disable the Policy Controller.  Default:
                     false.'
@@ -176,9 +192,9 @@ spec:
                     the label is set, Policy Controller will not be called for that
                     namespace or any resources contained in it. `gatekeeper-system`
                     is always exempted.
+                  type: array
                   items:
                     type: string
-                  type: array
                 logDeniesEnabled:
                   description: 'LogDeniesEnabled.  If true, Policy Controller will
                     log all denies and dryrun failures.  No effect unless policyController
@@ -196,16 +212,23 @@ spec:
                     will not be deployed if this is explicitly set to false or if
                     policyController is not enabled. Default: true.'
                   type: boolean
-              type: object
             sourceFormat:
-              description: SourceFormat specifies how the repository is formatted.
-                See documentation for specifics of what these options do.  Must be
-                one of hierarchy, unstructured. Optional. Set to hierarchy if not
-                specified.  The validation of this is case-sensitive.
-              pattern: ^(hierarchy|unstructured|)$
+              description: "SourceFormat specifies how the repository is formatted.
+                See documentation for specifics of what these options do. \n Must
+                be one of hierarchy, unstructured. Optional. Set to hierarchy if not
+                specified. \n The validation of this is case-sensitive."
               type: string
-          type: object
+              pattern: ^(hierarchy|unstructured|)$
+            # Note to maintainers. Manually delete whatever replaces this.
+            version:
+              description: Version specifies the exact addon version to be deployed,
+                eg 1.2.3 It should not be specified if Channel is specified
+              type: string
         status:
+          description: ConfigManagementStatus defines the observed state of ConfigManagement.
+          type: object
+          required:
+          - healthy
           properties:
             configManagementVersion:
               description: ConfigManagementVersion is the semantic version number
@@ -213,17 +236,11 @@ spec:
                 config management operator.
               type: string
             errors:
+              type: array
               items:
                 type: string
-              type: array
             healthy:
               type: boolean
-          required:
-          - healthy
-          type: object
-      required:
-      - metadata
-      - spec
 status:
   acceptedNames:
     kind: ""
