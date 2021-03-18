@@ -23,4 +23,4 @@ spec:
   host: '*.local'
   trafficPolicy:
     tls:
-      mode: DISABLED
+      mode: DISABLE
