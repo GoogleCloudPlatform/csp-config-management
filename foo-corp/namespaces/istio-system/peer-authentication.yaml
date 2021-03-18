@@ -19,4 +19,4 @@ metadata:
   namespace: "istio-system"
 spec:
   mtls:
-    mode: PERMISSIVE
+    mode: STRICT
