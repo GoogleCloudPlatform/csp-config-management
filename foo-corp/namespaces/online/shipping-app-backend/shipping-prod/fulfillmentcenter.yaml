@@ -1,6 +1,0 @@
-kind: FulfillmentCenter
-apiVersion: foo-corp.com/v1
-metadata:
-  name: production
-spec:
-  address: "100 Industry St."
