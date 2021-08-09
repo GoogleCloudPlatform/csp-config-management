@@ -19,16 +19,17 @@ steps:
   # available in the repository.
   name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: '/bin/sh'
-  args: ['-c', 'mkdir hydrated-manifests && kubectl kustomize config/prod > hydrated-manifests/prod.yaml']
+  args: ['-c', 'mkdir tmp && kubectl kustomize config/prod > tmp/prod.yaml']
 - id: 'Download policies'
   # This step fetches the policies from the Anthos Config Management repository
-  # and consolidates every resource in a single file.
-  name: 'gcr.io/kpt-dev/kpt'
+  # and consolidates every resource in a single directory.
+  name: 'gcr.io/kpt-dev/kpt:v1.0.0-beta.3'
   entrypoint: '/bin/sh'
   args: ['-c', 'kpt pkg get https://github.com/GoogleCloudPlatform/csp-config-management.git/ci-app/acm-repo/cluster@1.0.0 constraints
-                  && kpt fn source constraints/ hydrated-manifests/ > hydrated-manifests/kpt-manifests.yaml']
+                  && cp -a constraints/* tmp/']
 - id: 'Validate against policies'
   # This step validates that all resources comply with all policies.
-  name: 'gcr.io/config-management-release/policy-controller-validate'
-  args: ['--input', 'hydrated-manifests/kpt-manifests.yaml']
+  name: 'gcr.io/kpt-dev/kpt:v1.0.0-beta.3'
+  entrypoint: '/bin/sh'
+  args: ['-c', 'kpt fn eval tmp/ --image gcr.io/kpt-fn/gatekeeper:v0']
 # [END cloudbuild_config]
