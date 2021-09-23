@@ -1,0 +1,10 @@
+apiVersion: constraints.gatekeeper.sh/vibeta1
+kind: DestinationRuleTLSEnabled
+metadata:
+  name: destinationrule-tls-enabled
+spec:
+  match:
+    kinds:
+      - apiGroups: ["networking.istio.io"]
+        kinds: ["DestinationRule"]
+

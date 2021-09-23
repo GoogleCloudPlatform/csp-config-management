@@ -1,0 +1,9 @@
+apiVersion: constraints.gatekeeper.sh/vibeta1
+kind: PolicyStrictOnly
+metadata:
+  name: require-strict-mtls
+spec:
+  match:
+    kinds:
+      - apiGroups: ["security.istio.io"]
+        kinds: ["PeerAuthentication"]
