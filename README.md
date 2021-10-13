@@ -1,3 +1,5 @@
+**Notice: The [csp-config-management](https://github.com/GoogleCloudPlatform/csp-config-management) repo has been deprecated in favor of the [anthos-config-management-samples](https://github.com/GoogleCloudPlatform/anthos-config-management-samples) repo. Please contribute all sample updates, including ConfigManagement CRD updates, directly to the new [Github repo](https://github.com/GoogleCloudPlatform/anthos-config-management-samples).**
+
 # Anthos Config Management
 
 This repository contains example repos for [Anthos Config Management][1].
